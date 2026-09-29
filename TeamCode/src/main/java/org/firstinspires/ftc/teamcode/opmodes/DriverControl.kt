@@ -1,10 +1,12 @@
 package org.firstinspires.ftc.teamcode.opmodes
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp
 import com.qualcomm.robotcore.hardware.DcMotor
 import kotlin.math.abs
 import kotlin.math.max
 
+@TeleOp(name = "Driver Control")
 class DriverControl: LinearOpMode() {
     override fun runOpMode() {
         val fr: DcMotor = hardwareMap.get("frontRight") as DcMotor
