@@ -1,17 +1,31 @@
 package org.firstinspires.ftc.teamcode.helpers
 
 import com.qualcomm.robotcore.hardware.DcMotor
+import com.qualcomm.robotcore.hardware.DcMotorSimple
 import com.qualcomm.robotcore.hardware.HardwareMap
 
 class Intake {
     val motor: DcMotor
-    public var on: Boolean = false
-        set(value) = if(value){motor.power = 1.0}else{motor.power = 0.0}
+    val power = 1.0
+    val reverse = false
+    var on: Boolean = false
+        set(value) {
+            motor.power = if (value) {
+                power
+            } else {
+                0.0
+            }
+            field = value
+        }
 
     constructor(hardwareMap: HardwareMap) {
         motor = hardwareMap.get("intake") as DcMotor
+        if (reverse) {
+            motor.direction = DcMotorSimple.Direction.REVERSE
+        }
     }
-    public fun toggle(){
+
+    fun toggle() {
         on = !on
     }
 }
