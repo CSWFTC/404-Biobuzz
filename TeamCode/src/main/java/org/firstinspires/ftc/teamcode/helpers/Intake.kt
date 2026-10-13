@@ -1,13 +1,21 @@
 package org.firstinspires.ftc.teamcode.helpers
 
+import com.bylazar.configurables.annotations.Configurable
 import com.qualcomm.robotcore.hardware.DcMotor
 import com.qualcomm.robotcore.hardware.DcMotorSimple
 import com.qualcomm.robotcore.hardware.HardwareMap
 
+@Configurable
 class Intake {
+    companion object {
+        @JvmField
+        val power = 1.0
+
+        @JvmField
+        val reverse = false
+    }
+
     val motor: DcMotor
-    val power = 1.0
-    val reverse = false
     var on: Boolean = false
         set(value) {
             motor.power = if (value) {
