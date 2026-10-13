@@ -15,8 +15,8 @@ class Intake {
         val reverse = false
     }
 
-    val motor: DcMotor
-    var on: Boolean = false
+    private val motor: DcMotor
+    var on = false
         set(value) {
             motor.power = if (value) {
                 power
