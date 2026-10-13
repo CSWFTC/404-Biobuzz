@@ -22,6 +22,7 @@ class DriverControl : LinearOpMode() {
         val intakeButton = GamepadButton()
         val prepareButton = GamepadButton()
         val fireButton = GamepadButton()
+
         waitForStart()
         while (opModeIsActive()) {
             val x = gamepad1.left_stick_x
@@ -32,11 +33,12 @@ class DriverControl : LinearOpMode() {
             rl.power = (x + y + spin) / denominator
             rr.power = (y - x - spin) / denominator
             fl.power = (y - x + spin) / denominator
+
             if (intakeButton.justPressed(gamepad2.a))
                 intake.toggle()
-            if (intakeButton.justPressed(gamepad2.b))
+            if (prepareButton.justPressed(gamepad2.b))
                 catapult.prepare()
-            if (intakeButton.justPressed(gamepad2.y))
+            if (fireButton.justPressed(gamepad2.y))
                 catapult.fire()
         }
     }
