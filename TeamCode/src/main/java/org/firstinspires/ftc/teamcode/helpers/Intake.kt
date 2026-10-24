@@ -12,7 +12,7 @@ class Intake(hardwareMap: HardwareMap) {
         var power = 1.0
 
         @JvmField
-        var reverse = true
+        var direction = DcMotorSimple.Direction.REVERSE
     }
 
     private val motor = hardwareMap.get("intake") as DcMotor
@@ -27,9 +27,7 @@ class Intake(hardwareMap: HardwareMap) {
         }
 
     init {
-        if (reverse) {
-            motor.direction = DcMotorSimple.Direction.REVERSE
-        }
+        motor.direction = direction
     }
 
     fun toggle() {
