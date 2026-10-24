@@ -9,13 +9,13 @@ import com.qualcomm.robotcore.hardware.HardwareMap
 class SlipGearCatapult(hardwareMap: HardwareMap) {
     companion object {
         @JvmField
-        val preparePosition = 2090
+        var preparePosition = 2090
 
         @JvmField
-        val firePosition = 697
+        var firePosition = 697
 
         @JvmField
-        val reverse = false
+        var reverse = false
     }
 
     private val motor = hardwareMap.get("catapult") as DcMotor

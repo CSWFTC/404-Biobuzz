@@ -9,10 +9,10 @@ import com.qualcomm.robotcore.hardware.HardwareMap
 class Intake(hardwareMap: HardwareMap) {
     companion object {
         @JvmField
-        val power = 1.0
+        var power = 1.0
 
         @JvmField
-        val reverse = false
+        var reverse = false
     }
 
     private val motor = hardwareMap.get("intake") as DcMotor

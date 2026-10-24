@@ -9,16 +9,16 @@ import com.qualcomm.robotcore.hardware.HardwareMap
 class Drivetrain(hardwareMap: HardwareMap) {
     companion object {
         @JvmField
-        val frReverse = true
+        var frReverse = true
 
         @JvmField
-        val flReverse = false
+        var flReverse = false
 
         @JvmField
-        val rrReverse = true
+        var rrReverse = true
 
         @JvmField
-        val rlReverse = false
+        var rlReverse = false
     }
 
     val fr = hardwareMap.get("frontRight") as DcMotor
