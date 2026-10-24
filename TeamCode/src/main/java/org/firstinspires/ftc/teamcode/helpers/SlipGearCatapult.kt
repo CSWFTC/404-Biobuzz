@@ -29,7 +29,7 @@ class SlipGearCatapult {
         motor.power = 1.0
     }
 
-    private var ready = false
+    var ready = false
 
     fun prepare() {
         if (!ready) {
