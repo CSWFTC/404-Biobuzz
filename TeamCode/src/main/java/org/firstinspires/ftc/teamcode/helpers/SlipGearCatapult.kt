@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple
 import com.qualcomm.robotcore.hardware.HardwareMap
 
 @Configurable
-class SlipGearCatapult {
+class SlipGearCatapult(hardwareMap: HardwareMap) {
     companion object {
         @JvmField
         val preparePosition = 2090
@@ -18,10 +18,9 @@ class SlipGearCatapult {
         val reverse = false
     }
 
-    private val motor: DcMotor
+    private val motor = hardwareMap.get("catapult") as DcMotor
 
-    constructor(hardwareMap: HardwareMap) {
-        motor = hardwareMap.get("catapult") as DcMotor
+    init {
         if (reverse) {
             motor.direction = DcMotorSimple.Direction.REVERSE
         }

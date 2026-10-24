@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple
 import com.qualcomm.robotcore.hardware.HardwareMap
 
 @Configurable
-class Intake {
+class Intake(hardwareMap: HardwareMap) {
     companion object {
         @JvmField
         val power = 1.0
@@ -15,7 +15,7 @@ class Intake {
         val reverse = false
     }
 
-    private val motor: DcMotor
+    private val motor = hardwareMap.get("intake") as DcMotor
     var on = false
         set(value) {
             motor.power = if (value) {
@@ -26,8 +26,7 @@ class Intake {
             field = value
         }
 
-    constructor(hardwareMap: HardwareMap) {
-        motor = hardwareMap.get("intake") as DcMotor
+    init {
         if (reverse) {
             motor.direction = DcMotorSimple.Direction.REVERSE
         }
