@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp
 import org.firstinspires.ftc.teamcode.helpers.Drivetrain
 import org.firstinspires.ftc.teamcode.helpers.GamepadButton
+import org.firstinspires.ftc.teamcode.helpers.Intake
 import kotlin.math.abs
 import kotlin.math.max
 
@@ -11,7 +12,7 @@ import kotlin.math.max
 class DriverControl : LinearOpMode() {
     override fun runOpMode() {
         val dt = Drivetrain(hardwareMap)
-//        val intake = Intake(hardwareMap)
+        val intake = Intake(hardwareMap)
 //        val catapult = SlipGearCatapult(hardwareMap)
 
         val intakeButton = GamepadButton()
@@ -29,8 +30,8 @@ class DriverControl : LinearOpMode() {
             dt.rr.power = (y - x - spin) / denominator
             dt.fl.power = (y - x + spin) / denominator
 
-//            if (intakeButton.justPressed(gamepad2.a))
-//                intake.toggle()
+            if (intakeButton.justPressed(gamepad2.a))
+                intake.toggle()
 //            if (prepareButton.justPressed(gamepad2.b))
 //                catapult.prepare()
 //            if (fireButton.justPressed(gamepad2.y))

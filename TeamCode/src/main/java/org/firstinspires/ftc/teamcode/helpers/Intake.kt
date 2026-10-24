@@ -12,7 +12,7 @@ class Intake(hardwareMap: HardwareMap) {
         var power = 1.0
 
         @JvmField
-        var reverse = false
+        var reverse = true
     }
 
     private val motor = hardwareMap.get("intake") as DcMotor
