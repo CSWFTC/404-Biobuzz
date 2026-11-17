@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.yield
 import org.firstinspires.ftc.teamcode.helpers.Drivetrain
@@ -23,6 +24,9 @@ class DriverControl : LinearOpMode() {
 
         waitForStart()
         runBlocking {
+            launch {
+                outtake.loop()
+            }
             while (opModeIsActive()) {
                 val x = gamepad1.left_stick_x
                 val y = -gamepad1.left_stick_y
