@@ -2,15 +2,14 @@ package org.firstinspires.ftc.teamcode
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.yield
 import org.firstinspires.ftc.teamcode.helpers.Drivetrain
 import org.firstinspires.ftc.teamcode.helpers.GamepadButton
 import org.firstinspires.ftc.teamcode.helpers.Intake
+import org.firstinspires.ftc.teamcode.helpers.Outtake
 import kotlin.math.abs
 import kotlin.math.max
-import org.firstinspires.ftc.teamcode.helpers.Outtake
 
 
 @TeleOp(name = "Driver Control")
@@ -21,7 +20,6 @@ class DriverControl : LinearOpMode() {
         val outtake = Outtake(hardwareMap)
         val intakeButton = GamepadButton()
         val fireButton = GamepadButton()
-        val outtakeButton = GamepadButton()
 
         waitForStart()
         runBlocking {
@@ -37,10 +35,7 @@ class DriverControl : LinearOpMode() {
                 if (intakeButton.justPressed(gamepad2.a))
                     intake.toggle()
                 if (fireButton.justPressed(gamepad2.y))
-                    launch {
-                        outtake.toggle()
-                    }
-
+                    outtake.toggle()
 
                 yield()
             }
