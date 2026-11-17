@@ -5,23 +5,23 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.yield
-import org.firstinspires.ftc.teamcode.helpers.Catapult
 import org.firstinspires.ftc.teamcode.helpers.Drivetrain
 import org.firstinspires.ftc.teamcode.helpers.GamepadButton
 import org.firstinspires.ftc.teamcode.helpers.Intake
 import kotlin.math.abs
 import kotlin.math.max
+import org.firstinspires.ftc.teamcode.helpers.Outtake
+
 
 @TeleOp(name = "Driver Control")
 class DriverControl : LinearOpMode() {
     override fun runOpMode() {
         val dt = Drivetrain(hardwareMap)
         val intake = Intake(hardwareMap)
-        val catapult = Catapult(hardwareMap)
-
+        val outtake = Outtake(hardwareMap)
         val intakeButton = GamepadButton()
-        val resetButton = GamepadButton()
         val fireButton = GamepadButton()
+        val outtakeButton = GamepadButton()
 
         waitForStart()
         runBlocking {
@@ -34,17 +34,13 @@ class DriverControl : LinearOpMode() {
                 dt.rl.power = (x + y + spin) / denominator
                 dt.rr.power = (y - x - spin) / denominator
                 dt.fl.power = (y - x + spin) / denominator
-
                 if (intakeButton.justPressed(gamepad2.a))
                     intake.toggle()
-                if (resetButton.justPressed(gamepad2.x))
-                    launch {
-                        catapult.reset()
-                    }
                 if (fireButton.justPressed(gamepad2.y))
                     launch {
-                        catapult.fire()
+                        outtake.toggle()
                     }
+
 
                 yield()
             }
