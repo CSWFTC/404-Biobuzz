@@ -28,10 +28,13 @@ class DriverControl : LinearOpMode() {
 
         waitForStart()
         runBlocking {
-            launch { outtake.loop() }
-            launch { intakeButton.loop() }
-            launch { fireButton.loop() }
-            launch { transferButton.loop() }
+            val childJobs = launch {
+                launch { outtake.loop() }
+                launch { intakeButton.loop() }
+                launch { fireButton.loop() }
+                launch { transferButton.loop() }
+            }
+            yield()
             while (opModeIsActive()) {
                 val x = gamepad1.left_stick_x
                 val y = -gamepad1.left_stick_y
@@ -49,6 +52,7 @@ class DriverControl : LinearOpMode() {
                     transfer.toggle()
                 yield()
             }
+            childJobs.cancel()
         }
     }
 }
