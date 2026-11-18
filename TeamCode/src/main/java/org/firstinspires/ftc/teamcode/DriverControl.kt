@@ -21,6 +21,7 @@ class DriverControl : LinearOpMode() {
         val outtake = Outtake(hardwareMap)
         val intakeButton = GamepadButton()
         val fireButton = GamepadButton()
+        val transferButton = GamepadButton()
 
         waitForStart()
         runBlocking {
@@ -40,7 +41,8 @@ class DriverControl : LinearOpMode() {
                     intake.toggle()
                 if (fireButton.justPressed(gamepad2.y))
                     outtake.toggle()
-
+                if (transferButton.justPressed(gamepad2.b))
+                    outtake.toggle()
                 yield()
             }
         }
