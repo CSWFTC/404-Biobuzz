@@ -19,14 +19,17 @@ class DriverControl : LinearOpMode() {
         val dt = Drivetrain(hardwareMap)
         val intake = Intake(hardwareMap)
         val outtake = Outtake(hardwareMap)
-        val intakeButton = GamepadButton()
-        val fireButton = GamepadButton()
-        val transferButton = GamepadButton()
+        val intakeButton = GamepadButton { gamepad2.a }
+        val fireButton = GamepadButton { gamepad2.y }
+        val transferButton = GamepadButton { gamepad2.b }
 
         waitForStart()
         runBlocking {
             launch {
                 outtake.loop()
+                intakeButton.loop()
+                fireButton.loop()
+                transferButton.loop()
             }
             while (opModeIsActive()) {
                 val x = gamepad1.left_stick_x
@@ -37,11 +40,11 @@ class DriverControl : LinearOpMode() {
                 dt.rl.power = (x + y + spin) / denominator
                 dt.rr.power = (y - x - spin) / denominator
                 dt.fl.power = (y - x + spin) / denominator
-                if (intakeButton.justPressed(gamepad2.a))
+                if (intakeButton.justPressed)
                     intake.toggle()
-                if (fireButton.justPressed(gamepad2.y))
+                if (fireButton.justPressed)
                     outtake.toggle()
-                if (transferButton.justPressed(gamepad2.b))
+                if (transferButton.justPressed)
                     outtake.toggle()
                 yield()
             }
