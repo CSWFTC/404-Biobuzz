@@ -9,6 +9,7 @@ import org.firstinspires.ftc.teamcode.helpers.Drivetrain
 import org.firstinspires.ftc.teamcode.helpers.GamepadButton
 import org.firstinspires.ftc.teamcode.helpers.Intake
 import org.firstinspires.ftc.teamcode.helpers.Outtake
+import org.firstinspires.ftc.teamcode.helpers.Transfer
 import kotlin.math.abs
 import kotlin.math.max
 
@@ -19,6 +20,8 @@ class DriverControl : LinearOpMode() {
         val dt = Drivetrain(hardwareMap)
         val intake = Intake(hardwareMap)
         val outtake = Outtake(hardwareMap)
+        val transfer = Transfer(hardwareMap)
+
         val intakeButton = GamepadButton { gamepad2.a }
         val fireButton = GamepadButton { gamepad2.y }
         val transferButton = GamepadButton { gamepad2.b }
@@ -45,7 +48,7 @@ class DriverControl : LinearOpMode() {
                 if (fireButton.justPressed)
                     outtake.toggle()
                 if (transferButton.justPressed)
-                    outtake.toggle()
+                    transfer.toggle()
                 yield()
             }
         }
