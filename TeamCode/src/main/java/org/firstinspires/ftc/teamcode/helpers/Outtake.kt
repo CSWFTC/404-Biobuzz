@@ -56,7 +56,7 @@ class Outtake(hardwareMap: HardwareMap) {
             val dedt = (error - prevE) / dt
             integral += error * dt
             prevE = error
-            motor.power = kP * error + kI * integral + kD * dedt
+            motor.power = (kP * error + kI * integral + kD * dedt).coerceIn(-1.0, 1.0)
             yield()
         }
     }
