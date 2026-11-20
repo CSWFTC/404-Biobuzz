@@ -20,11 +20,10 @@ class DriverControl : LinearOpMode() {
         val dt = Drivetrain(hardwareMap)
         val intake = Intake(hardwareMap)
         val outtake = Outtake(hardwareMap)
-        val transfer = Transfer(hardwareMap)
 
         val intakeButton = GamepadButton { gamepad2.a }
         val fireButton = GamepadButton { gamepad2.y }
-        val transferButton = GamepadButton { gamepad2.b }
+        val invertIntakeButton = GamepadButton { gamepad2.b }
 
         waitForStart()
         runBlocking {
@@ -32,7 +31,7 @@ class DriverControl : LinearOpMode() {
                 launch { outtake.loop() }
                 launch { intakeButton.loop() }
                 launch { fireButton.loop() }
-                launch { transferButton.loop() }
+                launch { invertIntakeButton.loop() }
             }
             yield()
             while (opModeIsActive()) {
@@ -48,8 +47,8 @@ class DriverControl : LinearOpMode() {
                     intake.toggle()
                 if (fireButton.justPressed)
                     outtake.toggle()
-                if (transferButton.justPressed)
-                    transfer.toggle()
+                if (invertIntakeButton.justPressed)
+                    intake.invert()
                 yield()
             }
             childJobs.cancel()

@@ -29,7 +29,13 @@ class Intake(hardwareMap: HardwareMap) {
     init {
         motor.direction = direction
     }
-
+    fun invert(){
+        motor.direction = if(motor.direction == DcMotorSimple.Direction.REVERSE){
+            DcMotorSimple.Direction.FORWARD
+        } else {
+            DcMotorSimple.Direction.REVERSE
+        }
+    }
     fun toggle() {
         on = !on
     }
